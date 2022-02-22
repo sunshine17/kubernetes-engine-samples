@@ -37,14 +37,14 @@ spec:
           volumeMounts:
             - name: wordpress-persistent-storage
               mountPath: /var/www/html
-        # Change ${INSTANCE_CONNECTION_NAME} here to include your GCP
+        # Change wordpress-on-gke-342003:us-central1:mysql-wordpress-instance here to include your GCP
         # project, the region of your Cloud SQL instance and the name
         # of your Cloud SQL instance. The format is
-        # $PROJECT:$REGION:$INSTANCE
+        # wordpress-on-gke-342003::
         - name: cloudsql-proxy
           image: gcr.io/cloudsql-docker/gce-proxy:1.11
           command: ["/cloud_sql_proxy",
-                    "-instances=${INSTANCE_CONNECTION_NAME}=tcp:3306",
+                    "-instances=wordpress-on-gke-342003:us-central1:mysql-wordpress-instance=tcp:3306",
                     # If running on a VPC, the Cloud SQL proxy can connect via Private IP. See:
                     # https://cloud.google.com/sql/docs/mysql/private-ip for more info.
                     # "-ip_address_types=PRIVATE",
