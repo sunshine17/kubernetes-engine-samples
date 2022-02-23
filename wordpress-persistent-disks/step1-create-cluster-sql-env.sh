@@ -13,9 +13,10 @@ kubectl apply -f $WORKING_DIR/wordpress-volumeclaim.yaml
 kubectl get persistentvolumeclaim
 
 ## Creating a Cloud SQL for MySQL instance
-INSTANCE_NAME=mysql-wordpress-instance
 gcloud sql instances create $INSTANCE_NAME
 
+## Export the env variable for substitution of the deploy file 
+## "wordpress_cloudsql.yaml"(in Step3-deploy-wordpress)
 export INSTANCE_CONNECTION_NAME=$(gcloud sql instances describe $INSTANCE_NAME \
     --format='value(connectionName)')
 
