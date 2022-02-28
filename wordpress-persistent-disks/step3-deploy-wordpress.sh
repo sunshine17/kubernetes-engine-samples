@@ -2,15 +2,14 @@ source ./step0-env.sh
 
 # 1. Configure a service account and create secrets
 echo "1. Configure a service account and create secrets"
-SA_NAME=cloudsql-proxy
 gcloud iam service-accounts create $SA_NAME --display-name $SA_NAME
 SA_EMAIL=$(gcloud iam service-accounts list \
     --filter=displayName:$SA_NAME \
     --format='value(email)')
 echo "Step #1 DONE."
 
-# 2. Bind cloudsql.client role to IAM with the project
-echo "2. Bind cloudsql.client role to IAM with the project \n"
+# 2. Bind "cloudsql.client" ROLE to the service account
+echo '2. Bind "cloudsql.client" ROLE to the service account'
 gcloud projects add-iam-policy-binding $PROJECT_ID \
     --role roles/cloudsql.client \
     --member serviceAccount:$SA_EMAIL

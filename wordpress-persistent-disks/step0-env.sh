@@ -2,6 +2,7 @@ PROJECT_ID=wordpress-on-gke-342003
 WORKING_DIR=$(pwd)
 CLUSTER_NAME=wordpress-persistent-disk
 INSTANCE_NAME=mysql-wordpress-instance
+SA_NAME=cloudsql-proxy
 
 
 gcloud config set compute/zone us-west1-a
